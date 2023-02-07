@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Temperature Converter:</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    
+    #container{
+        padding: 100px 20px 20px 500px;
+        
+    }
+    #content{
+        background-color: aqua;
+        height: 200px;
+        width:500px;
+        padding:20px;
+        text-align: center;
+    }
+    h1{
+        margin-left: 100px;
+    }
+    label{
+        font-weight: 700;
+        margin-left: 70px;
+        margin-right: 100px;
+        
+    }
+    input{
+        height: 30px;
+        border: 2px solid black;
+        margin-right:  50px;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: oblique;
+       
+    }
+    #btn{
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 100px;
+        margin-left: -40px;
+        border: 2px solid burlywood;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div id="container">
+        <h1>Temperature Converter</h1>
+        <div id="content">
+            <label>Celcius</label> 
+            <label>Farenheit</label><br>
+             <input type="number" id="one" value="0">  <!--celcius input -->
+           
+            <input type="number" id="two" value="32"><br> <!--Farenheit input-->
+            <button id="btn">Reload>></button>
+        </div>
+    </div>
+    <script>
+        //Setting action on reload button
+        let btn=document.getElementById("btn");
+        btn.addEventListener('click',function(){
+            location.reload();
+        });
+
+        //Setting action on celcius button.
+        let cel=document.getElementById("one");
+        let far=document.getElementById("two");
+
+        cel.addEventListener('input',function(){
+          let celcius=this.value;
+          let f=(celcius*9/5)+32;
+          far.value=f.toFixed(4);  //change value of farenheit.
+        });
+
+        far.addEventListener('input',function(){
+            let farenheit=this.value;
+            let c=(farenheit-32)*5/9;
+            cel.value=c.toFixed(4);
+        });
+
+
+    </script>
+</body>
+</html>

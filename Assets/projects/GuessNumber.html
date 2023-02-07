@@ -1,0 +1,159 @@
+<html>
+  <head>
+    <title>Guess My Number!</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+      html {
+        font-size: 69.5%;
+      }
+      body {
+        background-color: black;
+        color: white;
+        font-family: "Press Start 2P", sans-serif;
+        box-sizing: border-box;
+      }
+      .againButton {
+        background-color: white;
+        font-family: "Press Start 2P", sans-serif;
+        border: 1px;
+        width: 150px;
+        height: 60px;
+        cursor: hand;
+        margin-top: 10px;
+        margin-left: 10px;
+        float: left;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 90px;
+        display: inline-block;
+      }
+      h2 {
+        float: right;
+      }
+      header {
+        height: 35vh;
+        border-bottom: 7px solid white;
+      }
+      .Guessed-Number {
+        height: 100px;
+        width: 150px;
+        background-color: white;
+        margin-top: 50px;
+        margin-left: -100px;
+        color: black;
+        text-align: center;
+        padding-top: 40px;
+        box-sizing: border-box;
+        font-size: 30px;
+      }
+      input {
+        border: 2px solid white;
+        height: 70px;
+        width: 190px;
+        background-color: inherit;
+        float: left;
+        color: white;
+        font-size: 30pt;
+      }
+      .left {
+        margin-top: 80px;
+        height: 300px;
+        width: 300px;
+        /*border: 2px solid yellow;*/
+        padding-top: 90px;
+        padding-left: 40px;
+        float: left;
+      }
+      .right {
+        margin-top: 80px;
+        height: 300px;
+        width: 360px;
+        /*border: 2px solid yellow;*/
+        padding-top: 90px;
+        padding-left: 40px;
+        font-size: 20px;
+        float: right;
+      }
+      .Check-Button {
+        background-color: white;
+        font-family: "Press Start 2P", sans-serif;
+        border: 1px;
+        margin-top: 85px;
+        width: 150px;
+        height: 60px;
+        margin-left: -165px;
+        cursor: hand;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button class="againButton" onclick="Again()">Again!</button>
+      <h2>(Between 1 and 20)</h2>
+      <center><h1>Guess My Number!</h1></center>
+      <center><div class="Guessed-Number">?</div></center>
+    </header>
+
+    <main>
+      <section class="left">
+        <input type="number" min="1" max="20" value="0" class="TextField" />
+        <button class="Check-Button" onclick="Handler()">Check!</button>
+      </section>
+      <section class="right">
+        <p class="message">Start Guessing...</p>
+        <p class="score-label">💯 Score:</p>
+        <p class="highscore-label">🏆 HighScore: 0</p>
+      </section>
+    </main>
+
+    <script>
+      "use strict";
+      let Message = document.querySelector(".message");
+      var randomNumber = Math.floor(Math.random() * 21);
+      let Sc = document.querySelector(".score-label");
+      let sc = 0;
+      let highScore = 0;
+
+      let Body = document.querySelector("body");
+      let guessed = document.querySelector(".Guessed-Number");
+      function Handler() {
+        let inputValue = document.querySelector(".TextField").value;
+        let Highest = document.querySelector(".highscore-label");
+        guessed.textContent = inputValue;
+        if (inputValue == randomNumber) {
+          Message.textContent = "Correct Answer";
+          ++sc;
+          Body.style = "background-color:green;";
+          Sc.textContent = "💯 Score: " + sc;
+        }
+        if (inputValue - 2 == randomNumber) {
+          Message.textContent = "Low!!";
+          Sc.textContent = "💯 Score: " + sc;
+        }
+        if (inputValue + 2 == randomNumber) {
+          Message.textContent = "High!!";
+          Sc.textContent = "💯 Score: " + sc;
+        }
+        if (inputValue < randomNumber) {
+          Message.textContent = "Too Low!!";
+          Sc.textContent = "💯 Score: " + sc;
+        }
+        if (inputValue > randomNumber) {
+          Message.textContent = "Too high!!";
+          Sc.textContent = "💯 Score: " + sc;
+        }
+        if (sc > highScore) {
+          highScore = sc;
+          Highest.textContent = "🏆 HighScore: " + highScore;
+        }
+      }
+      function Again() {
+        //Create a new random number:
+        randomNumber = Math.floor(Math.random() * 20);
+        Body.style = "background-color:black;";
+      }
+    </script>
+  </body>
+</html>
